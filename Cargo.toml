@@ -1,0 +1,25 @@
+[package]
+name = "asana2taskwarrior"
+version = "0.1.0"
+edition = "2018"
+authors = ["Artiom Khandamirov <t9max@yandex.ru>"]
+description = "Script to convert JSON with tasks exported from Asana to Taskwarrior JSON"
+readme = "README.md"
+license = "Apache-2.0"
+keywords = ["json", "taskwarrior", "asana", "converter"]
+categories = ["command-line-utilities"]
+repository = "https://github.com/artushak/asana2taskwarrior/"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+chrono = { version = "0.4", features = ["serde"] }
+clap = { version = "3", features = ["derive"] }
+itertools = "0.10"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sscanf = "0.1"
+uuid = { version = "0.8", features = ["serde", "v4"] }
+
+[dev-dependencies]
+tempfile = "3"

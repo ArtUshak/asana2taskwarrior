@@ -1,0 +1,41 @@
+# Asana-to-Taskwarrior task converter
+
+This is script to convert exported tasks from [Asana API](https://developers.asana.com/docs/get-tasks-from-a-project) JSON to [Taskwarrior import](https://taskwarrior.org/docs/design/task.html) JSON.
+
+## Usage
+
+1. Export tasks from Asana project using API and get JSON file `input.json`.
+2. Convert tasks: `asana2taskwarrior --input-asana-file input.json --output-taskwarrior-file output.json`
+3. Import tasks to Taskwarrior: `task import output.json`
+
+## Options
+
+* `--append-sections-to-project` — add section names to output project names, for example, if task is in section **Labs** of project **Functional programming**, then output project name will be **Functional programming: Labs**
+* `--children-to-dependencies` — mark parent tasks as dependencies of their children
+* `--section-priority-mapping-file FILE` — JSON file with section-to-priority mapping (see below)
+
+## Section-to-priority mapping file
+
+Section-to-priority mapping can be used to determine output task priority from input section name.
+
+Example:
+
+```json
+{
+    "default_mapping": "L",
+    "mapping": {
+        "Квартира": "H",
+        "Здоровье": "H",
+        "Поиск работы": "H",
+        "Фитнес": "M",
+        "Компьютер": "M",
+        "Книги (учебная литература)": "M",
+        "Учёба: математика": "M",
+        "Учёба: программирование": "M",
+        "Книги (художественная литература)": "L",
+        "Игры": "L",
+        "Кино": "L",
+        "Прочее": "M"
+    }
+}
+```
