@@ -61,7 +61,7 @@ pub fn convert_tasks_list(
             project_name = Some(parent_project_name.clone());
         } else if append_sections_to_project {
             project_name = membership
-                .map(|membership| membership.project.name.clone() + "." + &membership.section.name);
+                .map(|membership| membership.project.name.clone() + ". " + &membership.section.name);
         } else {
             project_name = membership.map(|membership| membership.project.name.clone());
         }
