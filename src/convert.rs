@@ -60,8 +60,9 @@ pub fn convert_tasks_list(
         if let Some((_, _, _, Some(parent_project_name))) = parent {
             project_name = Some(parent_project_name.clone());
         } else if append_sections_to_project {
-            project_name = membership
-                .map(|membership| membership.project.name.clone() + ". " + &membership.section.name);
+            project_name = membership.map(|membership| {
+                membership.project.name.clone() + ". " + &membership.section.name
+            });
         } else {
             project_name = membership.map(|membership| membership.project.name.clone());
         }
@@ -72,7 +73,7 @@ pub fn convert_tasks_list(
         let due = task.due_on.map(|due_date| {
             Utc.from_utc_datetime(&NaiveDateTime::new(
                 due_date,
-                NaiveTime::from_hms(23, 59, 59),
+                NaiveTime::from_hms_milli_opt(23, 59, 59, 999).unwrap(),
             ))
         });
 
@@ -101,12 +102,11 @@ pub fn convert_tasks_list(
                 }
             }
         }
-        let dependencies;
-        if dependencies_tmp.is_empty() {
-            dependencies = None;
+        let dependencies = if dependencies_tmp.is_empty() {
+            None
         } else {
-            dependencies = Some(dependencies_tmp);
-        }
+            Some(dependencies_tmp)
+        };
 
         if let Some(completed_at) = completed_at {
             taskwarrior_task = taskwarrior::Task {
