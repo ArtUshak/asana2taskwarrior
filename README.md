@@ -1,6 +1,6 @@
 # Asana-to-Taskwarrior task converter
 
-This is script to convert exported tasks from [Asana API](https://developers.asana.com/docs/get-tasks-from-a-project) JSON to [Taskwarrior import](https://taskwarrior.org/docs/design/task.html) JSON.
+This is script to convert exported tasks from [Asana API](https://developers.asana.com/docs/get-tasks-from-a-project) JSON to [Taskwarrior import](https://github.com/GothenburgBitFactory/taskwarrior/blob/develop/doc/devel/rfcs/task.md) JSON.
 
 ## Usage
 
